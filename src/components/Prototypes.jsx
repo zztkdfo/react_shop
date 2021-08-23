@@ -1,11 +1,13 @@
 // components/Prototypes.jsx
-import {DataList} from './../mock/DataList'
+
+import useGetItemList from './../hooks/useGetItemList'
+
 export default function Prototypes() {
-  const dataList = DataList
+  const items= useGetItemList()
   return (
     <main>
       <div className="prototypes">
-        {dataList.map((item) => {
+        {items.map((item) => {
           const {id, thumbnail, title, price, desc,pieUrl} = item
           return (
             <div className="prototype" key={id}>
