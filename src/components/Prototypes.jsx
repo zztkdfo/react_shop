@@ -1,14 +1,19 @@
 // components/Prototypes.jsx
 
-import useGetItemList from './../hooks/useGetItemList'
+import usePrototypes from './../hooks/usePrototypes'
+import useActions from '../hooks/useActions';
 
 export default function Prototypes() {
-  const items= useGetItemList()
+  const items = usePrototypes()
+  const {addToOrder} = useActions()
   return (
     <main>
       <div className="prototypes">
         {items.map((item) => {
           const {id, thumbnail, title, price, desc,pieUrl} = item
+          const click = () =>{
+            addToOrder(id)
+          }
           return (
             <div className="prototype" key={id}>
               <a href={pieUrl} target="_BLANK" rel="noreferrer">
@@ -32,7 +37,7 @@ export default function Prototypes() {
 
               <div className="prototype__body">
                 <div className="prototype__title">
-                  <div className="btn btn--primary float--right">
+                  <div className="btn btn--primary float--right" onClick={click}>
                     <i className="icon icon--plus" />
                   </div>
 
